@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAA Research Group</title>
+  <meta name="description" content="CAA Research Group helps people by keeping them informed. We are building an open, sourced record of news and information on every subject. Our second project is practical how-to guides.">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://caa-research-group.org/">
+  <meta property="og:title" content="CAA Research Group">
+  <meta property="og:description" content="Helping people by keeping them informed. An open, sourced record of news and information on every subject. Every entry sourced and dated.">
+  <meta property="og:image" content="https://caa-research-group.org/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="CAA Research Group: Helping people by keeping them informed.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1d1d1b;
+      --muted: #5b5a55;
+      --line: #dcd8cc;
+      --accent: #1f4e79;
+      --card: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141413;
+        --text: #ecebe6;
+        --muted: #a8a69d;
+        --line: #33322e;
+        --accent: #8fb8de;
+        --card: #1c1c1a;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 20px 48px;
+    }
+    .mark {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 24px;
+    }
+    h1 {
+      font-size: clamp(32px, 6vw, 46px);
+      line-height: 1.15;
+      font-weight: normal;
+      margin: 0 0 20px;
+    }
+    .lede {
+      font-size: 20px;
+      color: var(--muted);
+      margin: 0 0 48px;
+    }
+    h2 {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 48px 0 16px;
+    }
+    ul.standards {
+      margin: 0;
+      padding-left: 20px;
+    }
+    ul.standards li {
+      margin-bottom: 10px;
+    }
+    ul.standards li::marker { color: var(--accent); }
+    .status {
+      border-left: 3px solid var(--accent);
+      padding: 4px 0 4px 16px;
+    }
+    .status p { margin: 0 0 12px; }
+    .status p:last-child { margin-bottom: 0; }
+    a { color: var(--accent); }
+    .about p { margin: 0 0 12px; }
+    footer {
+      padding: 24px 20px 48px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    footer p { margin: 0; }
+    .top .lede { margin-bottom: 32px; }
+    .chat {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      overflow: hidden;
+    }
+    .chat-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .chat-title { font-weight: 600; }
+    .chat-tag {
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 2px 10px;
+    }
+    .chat-body { padding: 16px; min-height: 140px; }
+    .bubble {
+      margin: 0;
+      padding: 10px 14px;
+      background: var(--bg);
+      border-radius: 12px 12px 12px 4px;
+    }
+    .chat-input {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px;
+      border-top: 1px solid var(--line);
+    }
+    .chat-input input {
+      flex: 1;
+      min-width: 0;
+      font: inherit;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--muted);
+      cursor: not-allowed;
+    }
+    .chat-input button {
+      font: inherit;
+      padding: 8px 14px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--accent);
+      color: var(--card);
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    /* Ask CAA: live-state styles (used once ASK_CAA_URL is set). */
+    .chat.live .chat-input input { color: inherit; cursor: text; }
+    .chat.live .chat-input button { opacity: 1; cursor: pointer; }
+    .chat.live .chat-input button:disabled { opacity: 0.45; cursor: progress; }
+    .chat.live .chat-body { max-height: min(60vh, 460px); overflow-y: auto; }
+    .chat.live .bubble + .bubble { margin-top: 10px; }
+    .chat.live .bubble.you { background: transparent; border: 1px solid var(--line); border-radius: 12px 12px 4px 12px; }
+    .chat.live .answer { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .chat.live .answer a, .chat.live .sources a { color: var(--accent); }
+    .chat.live .sources { margin: 8px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--muted); }
+    .chat.live .sources li { margin-top: 4px; overflow-wrap: anywhere; }
+    .chat.live .bubble.error { color: var(--muted); font-style: italic; }
+    .chat.live .results { margin: 8px 0 0; padding-left: 20px; }
+    .chat.live .results li { margin-top: 10px; overflow-wrap: anywhere; }
+    .chat.live .results .meta { font-size: 13px; color: var(--muted); }
+    .chat.live .results a { color: var(--accent); }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+    @media (min-width: 1100px) {
+      main { max-width: 1136px; }
+      main > :not(.top) { max-width: 720px; }
+      /* The chat floats beside the intro, so a long reply never pushes the page down. */
+      .top { position: relative; }
+      .intro { max-width: min(720px, 100% - 376px); }
+      .top .lede { margin-bottom: 0; }
+      .chat { position: absolute; top: 4px; left: calc(min(720px, 100% - 376px) + 56px); width: 320px; }
+    }
+    @media (min-width: 1500px) {
+      main { max-width: none; position: relative; }
+      main > :not(.top), .intro { max-width: 720px; margin-left: auto; margin-right: auto; }
+      .top { display: block; position: static; }
+      .chat { position: absolute; top: 68px; left: auto; right: calc((100% - 720px) / 4 - 160px); width: 320px; margin-top: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="top">
+      <div class="intro">
+        <p class="mark">CAA Research Group</p>
+
+        <h1>Helping people by keeping them informed.</h1>
+
+        <p class="lede">
+          Our goal is simple: to help people, by informing them. We're building
+          an open, sourced record of news and information on every subject,
+          including stories the news cycle drops, topics written off as fringe,
+          and posts that get deleted. Each entry keeps its source link, a saved
+          copy of its text and the date, so it can't quietly vanish and you can
+          judge it for yourself.
+        </p>
+      </div>
+
+      <aside class="chat" aria-label="Ask CAA, coming soon">
+        <div class="chat-head">
+          <span class="chat-title">Ask CAA</span>
+          <span class="chat-tag">Coming soon</span>
+        </div>
+        <div class="chat-body">
+          <p class="bubble">
+            A free AI chatbot: ask about any story and get an answer drawn
+            from our online database, with source links and dates.
+          </p>
+        </div>
+        <div class="chat-input">
+          <label class="sr-only" for="ask">Your question</label>
+          <input id="ask" type="text" placeholder="Ask about any story…" disabled>
+          <button type="button" disabled>Send</button>
+        </div>
+      </aside>
+    </div>
+
+    <h2>Our standards</h2>
+    <ul class="standards">
+      <li><strong>Every entry is sourced.</strong> Each one links to where it came from, and we rely primarily on original sources.</li>
+      <li><strong>Everything is dated.</strong> You can see when each entry was posted and when it was added.</li>
+      <li><strong>Nothing quietly disappears.</strong> We keep a copy of each entry's text, so it stays on the record even if the original is deleted.</li>
+      <li><strong>No topic is left out.</strong> Political, contested or niche subjects are recorded the same way as everything else: neutrally, with their sources, so you can weigh them yourself.</li>
+      <li><strong>Uncertainty is labeled.</strong> When evidence is thin or disputed, we say so.</li>
+      <li><strong>A person reviews the work.</strong> AI helps with the research; a human signs off.</li>
+    </ul>
+
+    <h2>About</h2>
+    <div class="status">
+      <p>
+        CAA Research Group was founded in October 2026, and we're just
+        getting started. Our working prototype already holds about 3,500
+        entries across 39 topics, from politics and current events to
+        science, health and technology, each with its source and date.
+      </p>
+      <p>
+        We use Claude to find, summarize, tag and cross-check entries, and a
+        person reviews them.
+      </p>
+      <p>
+        Our second project: how-to guides, because life doesn't come with a
+        manual. Practical, step-by-step help for the everyday things nobody
+        ever taught you.
+      </p>
+      <p>
+        Is there a topic or story you think people should know about? We'd
+        love to hear it.
+      </p>
+    </div>
+
+    <h2>Contact</h2>
+    <p><a href="mailto:support@caa-research-group.org">support@caa-research-group.org</a></p>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 CAA Research Group LLC &middot; Virginia</p>
+  </footer>
+  <script>
+    // Ask CAA front end. Leave ASK_CAA_URL empty and the box stays "Coming soon".
+    // Set it to the Worker URL (no trailing slash) to switch the box on.
+    const ASK_CAA_URL = "https://ask-caa.caa-research.workers.dev";
+    // Shown in place of the "Coming soon" text once the box is on (search-only mode).
+    const ASK_CAA_INTRO = "Search our online database: ask about any story and get the closest matching entries, with source links and dates.";
+
+    (function () {
+      if (!ASK_CAA_URL) return;
+      // Visit ping so the owner can see whether people find the page (no cookies).
+      // A plain-text body keeps it a simple request (no CORS preflight).
+      try {
+        fetch(ASK_CAA_URL + "/hit", { method: "POST", keepalive: true, body: JSON.stringify({ ref: document.referrer, page: location.pathname + location.search }) }).catch(function () {});
+      } catch (e) { /* ignore */ }
+      var chat = document.querySelector(".chat");
+      if (!chat) return;
+      var input = chat.querySelector(".chat-input input");
+      var button = chat.querySelector(".chat-input button");
+      var body = chat.querySelector(".chat-body");
+      var tag = chat.querySelector(".chat-tag");
+      if (!input || !button || !body) return;
+
+      chat.classList.add("live");
+      chat.setAttribute("aria-label", "Ask CAA");
+      if (tag) tag.textContent = "Beta";
+      var intro = body.querySelector(".bubble");
+      if (intro && ASK_CAA_INTRO) intro.textContent = ASK_CAA_INTRO;
+      input.disabled = false;
+      button.disabled = false;
+      input.maxLength = 500;
+
+      function safeUrl(u) {
+        try {
+          var p = new URL(u);
+          return p.protocol === "http:" || p.protocol === "https:" ? p.href : null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function bubble(cls, text) {
+        var p = document.createElement("div");
+        p.className = "bubble " + cls;
+        p.textContent = text;
+        body.appendChild(p);
+        body.scrollTop = body.scrollHeight;
+        return p;
+      }
+
+      // Text with [1], [1, 3] markers -> text nodes plus <a> built with DOM APIs.
+      function renderAnswer(el, text, sources) {
+        var byN = {};
+        sources.forEach(function (s) { byN[s.n] = s; });
+        var re = /\[(\d+(?:\s*,\s*\d+)*)\]/g;
+        var last = 0, m;
+        while ((m = re.exec(text)) !== null) {
+          el.appendChild(document.createTextNode(text.slice(last, m.index)));
+          el.appendChild(document.createTextNode("["));
+          m[1].split(",").forEach(function (part, i) {
+            var n = Number(part.trim());
+            if (i > 0) el.appendChild(document.createTextNode(", "));
+            var s = byN[n];
+            var href = s && safeUrl(s.url);
+            if (href) {
+              var a = document.createElement("a");
+              a.href = href;
+              a.target = "_blank";
+              a.rel = "noopener noreferrer";
+              a.textContent = String(n);
+              el.appendChild(a);
+            } else {
+              el.appendChild(document.createTextNode(String(n)));
+            }
+          });
+          el.appendChild(document.createTextNode("]"));
+          last = re.lastIndex;
+        }
+        el.appendChild(document.createTextNode(text.slice(last)));
+      }
+
+      function renderSources(parent, sources) {
+        var list = sources.filter(function (s) { return safeUrl(s.url); });
+        if (!list.length) return;
+        var ul = document.createElement("ul");
+        ul.className = "sources";
+        list.forEach(function (s) {
+          var li = document.createElement("li");
+          li.appendChild(document.createTextNode("[" + s.n + "] " + (s.date || "") + (s.author ? ", " + s.author : "") + " "));
+          var a = document.createElement("a");
+          a.href = safeUrl(s.url);
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.textContent = "source";
+          li.appendChild(a);
+          ul.appendChild(li);
+        });
+        parent.appendChild(ul);
+      }
+
+      function line(parent, cls, text) {
+        var d = document.createElement("div");
+        d.className = cls;
+        d.textContent = text;
+        parent.appendChild(d);
+        return d;
+      }
+
+      // Search-only mode: one list item per entry, labels shown as written.
+      function renderResults(parent, results) {
+        var list = results.filter(function (r) { return r && safeUrl(r.url); });
+        if (!list.length) return;
+        var ol = document.createElement("ol");
+        ol.className = "results";
+        list.forEach(function (r) {
+          var li = document.createElement("li");
+          line(li, "meta", [r.date, r.author, r.topic].filter(Boolean).join(" · "));
+          if (r.excerpt) line(li, "excerpt", r.excerpt);
+          if (r.paper_title) line(li, "meta", "Linked paper: " + r.paper_title);
+          var src = line(li, "meta", r.sourcing ? "Sourcing: " + r.sourcing + (r.sourcing_meaning ? " (" + r.sourcing_meaning + ")" : "") + ". " : "");
+          var a = document.createElement("a");
+          a.href = safeUrl(r.url);
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.textContent = "Open source";
+          src.appendChild(a);
+          ol.appendChild(li);
+        });
+        parent.appendChild(ol);
+      }
+
+      async function ask(question) {
+        var mine = bubble("you", question);
+        var wait = bubble("answer", "Searching the database…");
+        button.disabled = true;
+        try {
+          var res = await fetch(ASK_CAA_URL + "/ask", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ question: question }),
+          });
+          var data = null;
+          try { data = await res.json(); } catch (e) { /* non-JSON error */ }
+          if (!res.ok || !data || typeof data.answer !== "string") {
+            wait.className = "bubble error";
+            wait.textContent = (data && (data.message || data.error)) || "Something went wrong. Please try again.";
+          } else {
+            wait.textContent = "";
+            var span = document.createElement("span");
+            span.className = "answer";
+            renderAnswer(span, data.answer, Array.isArray(data.sources) ? data.sources : []);
+            wait.appendChild(span);
+            renderSources(wait, Array.isArray(data.sources) ? data.sources : []);
+            if (Array.isArray(data.results)) renderResults(wait, data.results);
+          }
+        } catch (e) {
+          wait.className = "bubble error";
+          wait.textContent = "Could not reach Ask CAA. Please try again.";
+        }
+        button.disabled = false;
+        // Show the start of the reply (the question bubble at the top), not the end of the list.
+        body.scrollTop += mine.getBoundingClientRect().top - body.getBoundingClientRect().top - 8;
+      }
+
+      function submit() {
+        var q = input.value.trim();
+        if (!q || button.disabled) return;
+        input.value = "";
+        ask(q);
+      }
+      button.addEventListener("click", submit);
+      input.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") { e.preventDefault(); submit(); }
+      });
+      window.__askCaa = ask; // harmless hook, handy for testing
+    })();
+  </script>
+</body>
+</html>
