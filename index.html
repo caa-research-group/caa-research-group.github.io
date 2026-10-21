@@ -79,14 +79,17 @@
       color: var(--muted);
       margin: 48px 0 16px;
     }
-    ul.standards {
+    ul.standards, ul.products {
       margin: 0;
       padding-left: 20px;
     }
     ul.standards li {
       margin-bottom: 10px;
     }
-    ul.standards li::marker { color: var(--accent); }
+    ul.products li {
+      margin-bottom: 16px;
+    }
+    ul.standards li::marker, ul.products li::marker { color: var(--accent); }
     .status {
       border-left: 3px solid var(--accent);
       padding: 4px 0 4px 16px;
@@ -217,9 +220,9 @@
           Our goal is simple: to help people, by informing them. We're building
           an open, sourced record of news and information on every subject,
           including stories the news cycle drops, topics written off as fringe,
-          and posts that get deleted. Each entry keeps its source link, a saved
-          copy of its text and the date, so it can't quietly vanish and you can
-          judge it for yourself.
+          and posts that get deleted. Each entry keeps its source link and date,
+          a short summary in our own words, and a saved copy of the original,
+          so it can't quietly vanish and the record stays whole.
         </p>
       </div>
 
@@ -242,11 +245,26 @@
       </aside>
     </div>
 
+    <h2>Live now</h2>
+    <ul class="products">
+      <li>
+        <a href="https://news-bulletin.caa-research.workers.dev/"><strong>News Bulletin</strong></a>:
+        news, posts, an events calendar and job listings on one page, kept
+        up to date through the day, with links back to the original sources.
+      </li>
+      <li>
+        <a href="https://ai-benchmark-database.caa-research.workers.dev/"><strong>AI Benchmark &amp; Leaderboard Database</strong></a>:
+        who leads each major AI benchmark right now, which benchmarks are
+        worth trusting, and where to check current scores, each with its
+        source and date.
+      </li>
+    </ul>
+
     <h2>Our standards</h2>
     <ul class="standards">
       <li><strong>Every entry is sourced.</strong> Each one links to where it came from, and we rely primarily on original sources.</li>
       <li><strong>Everything is dated.</strong> You can see when each entry was posted and when it was added.</li>
-      <li><strong>Nothing quietly disappears.</strong> We keep a copy of each entry's text, so it stays on the record even if the original is deleted.</li>
+      <li><strong>Nothing quietly disappears.</strong> We privately keep a copy of each original and its date, so if a source edits or deletes it later, we can still prove what it said.</li>
       <li><strong>No topic is left out.</strong> Political, contested or niche subjects are recorded the same way as everything else: neutrally, with their sources, so you can weigh them yourself.</li>
       <li><strong>Uncertainty is labeled.</strong> When evidence is thin or disputed, we say so.</li>
       <li><strong>A person reviews the work.</strong> AI helps with the research; a human signs off.</li>
@@ -267,7 +285,8 @@
       <p>
         Our second project: how-to guides, because life doesn't come with a
         manual. Practical, step-by-step help for the everyday things nobody
-        ever taught you.
+        ever taught you. The first one is in the works: how to get a seat on
+        a Loudoun County board or commission.
       </p>
       <p>
         Is there a topic or story you think people should know about? We'd
