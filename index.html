@@ -245,21 +245,6 @@
       </aside>
     </div>
 
-    <h2>Live now</h2>
-    <ul class="products">
-      <li>
-        <a href="https://news-bulletin.caa-research.workers.dev/"><strong>News Bulletin</strong></a>:
-        news, posts, an events calendar and job listings on one page, kept
-        up to date through the day, with links back to the original sources.
-      </li>
-      <li>
-        <a href="https://ai-benchmark-database.caa-research.workers.dev/"><strong>AI Benchmark &amp; Leaderboard Database</strong></a>:
-        who leads each major AI benchmark right now, which benchmarks are
-        worth trusting, and where to check current scores, each with its
-        source and date.
-      </li>
-    </ul>
-
     <h2>Our standards</h2>
     <ul class="standards">
       <li><strong>Every entry is sourced.</strong> Each one links to where it came from, and we rely primarily on original sources.</li>
@@ -325,7 +310,7 @@
 
       chat.classList.add("live");
       chat.setAttribute("aria-label", "Ask CAA");
-      if (tag) tag.textContent = "Beta";
+      if (tag) tag.remove();
       var intro = body.querySelector(".bubble");
       if (intro && ASK_CAA_INTRO) intro.textContent = ASK_CAA_INTRO;
       input.disabled = false;
