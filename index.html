@@ -107,6 +107,7 @@
       color: var(--muted);
     }
     footer p { margin: 0; }
+    footer p.notice { margin: 0 auto 8px; max-width: 800px; font-size: 13px; }
     .top .lede { margin-bottom: 32px; }
     .chat {
       background: var(--card);
@@ -134,6 +135,7 @@
       padding: 2px 10px;
     }
     .chat-body { padding: 16px; min-height: 140px; }
+    .chat-note { margin: 0; padding: 0 16px 12px; font-size: 12px; color: var(--muted); }
     .bubble {
       margin: 0;
       padding: 10px 14px;
@@ -242,6 +244,7 @@
           <input id="ask" type="text" placeholder="Ask about any story…" disabled>
           <button type="button" disabled>Send</button>
         </div>
+        <p class="chat-note">Your question is saved with the visit log for 90 days, then deleted. Don't type personal details.</p>
       </aside>
     </div>
 
@@ -283,6 +286,7 @@
   </main>
 
   <footer>
+    <p class="notice">This site logs each visit (IP address, network, browser, device type, page, referring site) and deletes the log after 90 days. No cookies.</p>
     <p>&copy; 2026 CAA Research Group LLC</p>
   </footer>
   <script>
