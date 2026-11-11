@@ -235,8 +235,8 @@
         </div>
         <div class="chat-body">
           <p class="bubble">
-            A free AI chatbot: ask about any story and get an answer drawn
-            from our online database, with source links and dates.
+            Search the news: ask about any story and get the closest matching
+            headlines, each with its outlet, date and link.
           </p>
         </div>
         <div class="chat-input">
@@ -256,6 +256,13 @@
       <li><strong>No topic is left out.</strong> Political, contested or niche subjects are recorded the same way as everything else: neutrally, with their sources, so you can weigh them yourself.</li>
       <li><strong>Uncertainty is labeled.</strong> When evidence is thin or disputed, we say so.</li>
       <li><strong>A person reviews the work.</strong> AI helps with the research; a human signs off.</li>
+    </ul>
+
+    <h2>Our work</h2>
+    <ul class="products">
+      <li><a href="https://congress-commitments.caa-research.workers.dev/"><strong>Congress commitments.</strong></a> What the new majority has promised, and where each promise becomes binding.</li>
+      <li><a href="https://congress-statements.caa-research.workers.dev/"><strong>Congress live.</strong></a> Members' latest video and written statements, in one place.</li>
+      <li><a href="https://legal-help-by-state.caa-research.workers.dev/"><strong>Legal help by state.</strong></a> Free and low-cost legal help and government services, state by state.</li>
     </ul>
 
     <h2>About</h2>
@@ -294,7 +301,7 @@
     // Set it to the Worker URL (no trailing slash) to switch the box on.
     const ASK_CAA_URL = "https://ask-caa.caa-research.workers.dev";
     // Shown in place of the "Coming soon" text once the box is on (search-only mode).
-    const ASK_CAA_INTRO = "Search our online database: ask about any story and get the closest matching entries, with source links and dates.";
+    const ASK_CAA_INTRO = "Search the news: ask about any story and get the closest matching headlines, each with its outlet, date and link.";
 
     (function () {
       if (!ASK_CAA_URL) return;
